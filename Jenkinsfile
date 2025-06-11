@@ -17,7 +17,7 @@ pipeline {
         // ----------------------
         stage('Clone') {
             steps {
-                git url: 'https://github.com/widchayapon/nginx-node-test.git', branch: 'main'
+                git url: 'https://github.com/shswsy/testjenkins.git', branch: 'main'
             }
         }
 
@@ -108,8 +108,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
                         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                        docker tag nginx-node-test:latest tar3kom/nginx-node-test:latest
-                        docker push tar3kom/nginx-node-test:latest
+                        docker tag nginx-node-test:latest shswsy/nginx-node-test:latest
+                        docker push shswsy/nginx-node-test:latest
                         docker logout
                     '''
                 }
